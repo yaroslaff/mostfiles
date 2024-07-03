@@ -15,21 +15,23 @@ def count_files(path, recursive=False, hidden=False, count_dir=False):
         int: The number of files in the directory.
     """
     file_count = 0
-    
-    for entry in os.listdir(path):
-        if entry.startswith('.') and not hidden:
-            continue
+    try:
+        for entry in os.listdir(path):
+            if entry.startswith('.') and not hidden:
+                continue
 
-        full_path = os.path.join(path, entry)
-        if os.path.isfile(full_path):
-            file_count += 1
-        elif os.path.isdir(full_path):
-            if count_dir:
+            full_path = os.path.join(path, entry)
+            if os.path.isfile(full_path):
                 file_count += 1
-            sub_count = count_files(full_path, recursive)
-            if recursive:
-                file_count += sub_count
-    
+            elif os.path.isdir(full_path):
+                if count_dir:
+                    file_count += 1
+                sub_count = count_files(full_path, recursive)
+                if recursive:
+                    file_count += sub_count
+    except PermissionError:
+        pass
+
     dirs.append((path, file_count))
     return file_count
 
@@ -37,7 +39,7 @@ def count_files(path, recursive=False, hidden=False, count_dir=False):
 # directory_path = "path/to/directory"
 # print(count_files(directory_path, recursive=True))
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 def get_args():
     parser = argparse.ArgumentParser(
