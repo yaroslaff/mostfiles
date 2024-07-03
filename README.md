@@ -2,10 +2,11 @@
 
 List directories and number of files inside to easily find directories with most files.
 
-Give it path (default is `.`) and just 3 boolean options
+Give it path (default is `.`) and few options
 `-d`/`--dir` - each subdirectory counted as 1 file too
 `-a`/`--all` - do not ignore hidden files/directories 
 `-r`/`--recursive` - recursive mode. Mostfiles ALWAYS walks subdirectories recursively, but `-r` flag makes it to count files in nested directories.
+`-m`/`--min` - threshold value. Do not print directories which has less then `min` files.
 
 Examples:
 ~~~shell

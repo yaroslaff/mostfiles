@@ -39,7 +39,7 @@ def count_files(path, recursive=False, hidden=False, count_dir=False):
 # directory_path = "path/to/directory"
 # print(count_files(directory_path, recursive=True))
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 def get_args():
     parser = argparse.ArgumentParser(
@@ -50,6 +50,7 @@ def get_args():
     parser.add_argument("-r", "--recursive", default=False, action='store_true', help="recursive mode")
     parser.add_argument("-d", "--dir", default=False, action='store_true', help="directory counted as file too")
     parser.add_argument("-a", "--all", default=False, action='store_true', help="include hidden files/directories")
+    parser.add_argument("-m", "--min", default=None, type=int, help="print only directories with N+ files")
 
     return parser.parse_args()
 
@@ -61,6 +62,8 @@ def main():
     dirs = sorted(dirs, key=lambda x: x[1], reverse=True)
 
     for d in dirs:
+        if args.min is not None and d[1] < args.min:
+            break
         print(f"{d[1]} {os.path.relpath(d[0])}")
 
 if __name__ == '__main__':
