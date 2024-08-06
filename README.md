@@ -15,7 +15,7 @@ $ mostfiles
 1 mostfiles/__pycache__
 1 mostfiles
 ~~~
-3 files in current directory, all hidden files/directories (like .gitignore, .git ) are ignored. Only LICENSE, pyproject.toml and README.md is counted. Subdirectory "mostfiles" not counted because `-d` not given.
+3 files in current directory, all hidden files/directories (like .gitignore, .git ) are ignored. Only LICENSE, pyproject.toml and README.md are counted. Subdirectory "mostfiles" not counted because `-d` not given.
 
 ~~~
 $ mostfiles -r
